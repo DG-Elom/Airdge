@@ -5,11 +5,12 @@ import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { SunIcon, MoonIcon } from "@heroicons/react/solid";
 import { BsFillMoonFill, BsSunFill } from "react-icons/bs";
+import { useRouter } from "next/router";
 
 const Navbar = () => {
   const [token, setToken] = useState(null);
-  const { systemTheme, theme, setTheme } = useTheme();
-
+  const { theme, setTheme } = useTheme();
+  const router = useRouter();
   useEffect(() => {
     setToken(localStorage.getItem("token"));
   }, []);
@@ -23,7 +24,7 @@ const Navbar = () => {
   };
   const handleLogout = () => {
     localStorage.removeItem("token");
-    window.location.href = "/";
+    router.push("/");
   };
   return (
     <header className="flex items-center justify-between w-full max-w-4xl px-4 py-8 mx-auto">

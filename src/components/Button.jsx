@@ -10,4 +10,9 @@ const Button = ({ label, type, onClick }) => {
   );
 };
 
+Button.propTypes = {
+  label: PropTypes.string,
+  type: PropTypes.string,
+  onClick: PropTypes.func,
+};
 export default Button;

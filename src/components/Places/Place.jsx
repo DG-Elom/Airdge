@@ -30,4 +30,8 @@ const Place = ({ place }) => {
   );
 };
 
+Place.propTypes = {
+  place: propTypes.object,
+};
+
 export default Place;

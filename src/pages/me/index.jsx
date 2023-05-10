@@ -6,6 +6,7 @@ import Container from "../../components/Container";
 import Form from "../../components/auth/Form";
 import Loading from "../Loading";
 import Loader from "../../components/Loader";
+import { useRouter } from "next/router";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -13,6 +14,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     fetch("/api/auth/me", {
@@ -49,7 +51,7 @@ export default function Login() {
       if (res.status === 200) {
         toast.success("Login successful");
       }
-      window.location.href = "/";
+      router.push("/");
     } catch (err) {
       setError(err.response.data.error);
       console.log(error);

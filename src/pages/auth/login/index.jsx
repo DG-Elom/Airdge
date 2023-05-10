@@ -6,12 +6,14 @@ import toast from "react-hot-toast";
 import { useState } from "react";
 import Loading from "../../Loading";
 import Loader from "../../../components/Loader";
+import { useRouter } from "next/router";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,7 +29,7 @@ export default function Login() {
       if (res.status === 200) {
         toast.success("Login successful");
       }
-      window.location.href = "/";
+      router.push("/");
     } catch (err) {
       setError(err.response.data.error);
       console.log(error);

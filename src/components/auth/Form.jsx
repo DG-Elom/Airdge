@@ -57,4 +57,16 @@ const Form = ({
   );
 };
 
+Form.propTypes = {
+  label: PropTypes.string,
+  handleClick: PropTypes.func,
+  email: PropTypes.string,
+  setEmail: PropTypes.func,
+  password: PropTypes.string,
+  setPassword: PropTypes.func,
+  name: PropTypes.string,
+  setName: PropTypes.func,
+  buttonLabel: PropTypes.string,
+};
+
 export default Form;

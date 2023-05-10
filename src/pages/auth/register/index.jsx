@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import { useState } from "react";
 import Loading from "../../Loading";
 import Loader from "../../../components/Loader";
+import { useRouter } from "next/router";
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -13,6 +14,7 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,7 +32,7 @@ export default function Register() {
       if (res.status === 200) {
         toast.success("Sign in successful");
       }
-      window.location.href = "/auth/login";
+      router.push("/auth/login");
     } catch (err) {
       setError(err.response.data.error);
       console.log(error);

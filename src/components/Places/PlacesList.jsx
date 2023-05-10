@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Place from "./Place";
-import Loading from "../../pages/Loading";
 import Loader from "../Loader";
 
 const PlacesList = ({ search }) => {
@@ -32,6 +31,10 @@ const PlacesList = ({ search }) => {
         ))}
     </div>
   );
+};
+
+PlacesList.propTypes = {
+  search: PropTypes.string,
 };
 
 export default PlacesList;

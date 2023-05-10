@@ -24,4 +24,14 @@ const Input = ({
   );
 };
 
+Input.propTypes = {
+  label: PropTypes.string,
+  type: PropTypes.string,
+  name: PropTypes.string,
+  autocomplete: PropTypes.string,
+  required: PropTypes.bool,
+  className: PropTypes.string,
+  onChange: PropTypes.func,
+  value: PropTypes.string,
+};
 export default Input;

@@ -1,13 +1,10 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import Navbar from "../../components/navbar/Navbar";
 import Container from "../../components/Container";
 import Image from "next/image";
-import { redirect } from "next/dist/server/api-utils";
 import Loading from "../Loading";
-import Loader from "../../components/Loader";
 
-export default function Details(props, res) {
+export default function Details({ places }) {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const { id } = router.query;
@@ -68,3 +65,6 @@ export default function Details(props, res) {
     </Container>
   );
 }
+Details.propTypes = {
+  places: PropTypes.array,
+};
