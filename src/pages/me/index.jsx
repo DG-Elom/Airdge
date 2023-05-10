@@ -1,11 +1,9 @@
 import axios from "axios";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Container from "../../components/Container";
 import Form from "../../components/auth/Form";
 import Loading from "../Loading";
-import Loader from "../../components/Loader";
 import { useRouter } from "next/router";
 
 export default function Me() {
@@ -49,7 +47,9 @@ export default function Me() {
         }
       );
       if (res.status === 200) {
-        toast.success("Login successful");
+        toast.success("Updated successful", {
+          icon: "👌",
+        });
       }
       router.push("/");
     } catch (err) {

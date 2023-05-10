@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import prisma from "../../../lib/prisma";
+import { sign } from "jsonwebtoken";
 
 import { User } from "@prisma/client";
 

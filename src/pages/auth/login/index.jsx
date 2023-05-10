@@ -27,7 +27,9 @@ export default function Login() {
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
       if (res.status === 200) {
-        toast.success("Login successful");
+        toast.success("Login successful", {
+          icon: "🤘",
+        });
       }
       router.push("/");
     } catch (err) {
@@ -38,9 +40,9 @@ export default function Login() {
     }
   };
 
-  // if (loading) {
-  //   return <Loading />;
-  // }
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <Container className="flex min-h-[calc(100vh-100px)] flex-col max-w-7xl mx-auto px-4">

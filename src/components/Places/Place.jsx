@@ -13,6 +13,7 @@ const Place = ({ place }) => {
             height={500}
             src={place?.image}
             alt={place?.name}
+            priority={false}
           />
         </div>
         <div className="p-4">

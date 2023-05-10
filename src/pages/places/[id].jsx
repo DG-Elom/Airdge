@@ -32,6 +32,7 @@ export default function Details({ places }) {
         height={500}
         src={place?.image}
         alt={place?.name}
+        priority={false}
       />
       <div className="flex flex-col md:flex-row">
         <div className="flex-1 flex-grow">
@@ -55,6 +56,7 @@ export default function Details({ places }) {
                 height={100}
                 src={place?.host?.avatar}
                 alt={place?.host?.name}
+                priority={false}
               />
               <h3 className="text-lg font-medium text-gray-900 ml-2 truncate">
                 {place?.host?.name}
