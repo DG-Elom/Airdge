@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Container from "../../components/Container";
 import Image from "next/image";
 import Loading from "../Loading";
+import PropTypes from "prop-types";
 
 export default function Details({ places }) {
   const [loading, setLoading] = useState(false);

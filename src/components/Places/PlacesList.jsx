@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Place from "./Place";
 import Loader from "../Loader";
+import PropTypes from "prop-types";
 
 const PlacesList = ({ search }) => {
   const [isLoading, setIsLoading] = useState(false);

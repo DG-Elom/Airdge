@@ -8,7 +8,7 @@ import Loading from "../Loading";
 import Loader from "../../components/Loader";
 import { useRouter } from "next/router";
 
-export default function Login() {
+export default function Me() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");

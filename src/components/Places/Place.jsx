@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import PropTypes from "prop-types";
 
 const Place = ({ place }) => {
   return (
@@ -31,7 +32,7 @@ const Place = ({ place }) => {
 };
 
 Place.propTypes = {
-  place: propTypes.object,
+  place: PropTypes.object,
 };
 
 export default Place;

@@ -2,7 +2,7 @@ import Head from "next/head";
 import React from "react";
 import Navbar from "./navbar/Navbar";
 import ToastProvider from "../providers/ToastProvider";
-
+import PropTypes from "prop-types";
 export default function Container({ children, className }) {
   return (
     <>

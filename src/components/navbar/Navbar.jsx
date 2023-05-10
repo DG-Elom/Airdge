@@ -9,12 +9,16 @@ import { useRouter } from "next/router";
 
 const Navbar = () => {
   const [token, setToken] = useState(null);
+  const [themeLogo, setThemeLogo] = useState(null);
   const { theme, setTheme } = useTheme();
   const router = useRouter();
   useEffect(() => {
     setToken(localStorage.getItem("token"));
   }, []);
 
+  useEffect(() => {
+    setThemeLogo(theme === "dark" ? <BsSunFill /> : <BsFillMoonFill />);
+  }, [theme]);
   const handleToogle = () => {
     if (theme === "dark") {
       setTheme("light");
@@ -39,7 +43,7 @@ const Navbar = () => {
           onClick={handleToogle}
           className="p-1 text-slate-500 dark:text-yellow-400 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none"
         >
-          {theme === "dark" ? <BsSunFill /> : <BsFillMoonFill />}
+          {themeLogo}
         </div>
         {token ? (
           <>
