@@ -4,7 +4,8 @@ import { faker } from "@faker-js/faker";
 const prisma = new PrismaClient();
 
 const userData: Prisma.UserCreateInput[] = Array.from({ length: 100 }).map(
-  (_) => ({
+  (_, id) => ({
+    user_id: id,
     name: faker.internet.userName(),
     email: faker.internet.email(),
     password: faker.internet.password(),
@@ -13,50 +14,52 @@ const userData: Prisma.UserCreateInput[] = Array.from({ length: 100 }).map(
 );
 
 const cityData: Prisma.CityCreateInput[] = Array.from({ length: 100 }).map(
-  (_) => ({
+  (_, id) => ({
+    city_id: id,
     name: faker.address.city(),
   })
 );
 
-const placeData: Prisma.PlaceCreateInput[] = Array.from({ length: 100 }).map(
-  (_) => ({
-    name: `${faker.company.catchPhraseAdjective()} ${faker.company.catchPhraseNoun()}`,
-    description: faker.lorem.paragraph(),
-    image: faker.image.city(500, 500, true),
-    numberOfRooms: faker.datatype.number({
-      min: 1,
-      max: 10,
-    }),
-    numberOfBathrooms: faker.datatype.number({
-      min: 1,
-      max: 3,
-    }),
-    maxGuests: faker.datatype.number({
-      min: 1,
-      max: 10,
-    }),
-    priceByNight: faker.datatype.number({
-      min: 100,
-      max: 1000,
-    }),
-    host: {
-      connect: {
-        id: faker.datatype.number({
-          min: 1,
-          max: 100,
-        }),
-      },
+const placeDataList: Prisma.PlaceCreateInput[] = Array.from({
+  length: 100,
+}).map((_, index) => ({
+  place_id: index,
+  name: `${faker.company.catchPhraseAdjective()} ${faker.company.catchPhraseNoun()}`,
+  description: faker.lorem.paragraph(),
+  image: faker.image.city(500, 500, true),
+  numberOfRooms: faker.datatype.number({
+    min: 1,
+    max: 10,
+  }),
+  numberOfBathrooms: faker.datatype.number({
+    min: 1,
+    max: 3,
+  }),
+  maxGuests: faker.datatype.number({
+    min: 1,
+    max: 10,
+  }),
+  priceByNight: faker.datatype.number({
+    min: 100,
+    max: 1000,
+  }),
+  host: {
+    connect: {
+      user_id: faker.datatype.number({
+        min: 1,
+        max: 100,
+      }),
     },
-    city: {
-      connect: {
-        id: faker.datatype.number({
-          min: 1,
-          max: 100,
-        }),
-      },
+  },
+  city: {
+    connect: {
+      city_id: faker.datatype.number({
+        min: 1,
+        max: 100,
+      }),
     },
-  })
-);
+  },
+}));
 
 async function main() {
   console.log(`Start seeding ...`);
@@ -64,22 +67,23 @@ async function main() {
     const user = await prisma.user.create({
       data: u,
     });
-    console.log(`Created user with id: ${user.id}`);
+    console.log(`Created user with id: ${user.user_id}`);
   }
   for (const c of cityData) {
     const city = await prisma.city.create({
       data: c,
     });
-    console.log(`Created city with id: ${city.id}`);
+    console.log(`Created city with id: ${city.city_id}`);
   }
-  for (const p of placeData) {
+  for (const p of placeDataList) {
     const place = await prisma.place.create({
       data: p,
     });
-    console.log(`Created place with id: ${place.id}`);
+    console.log(`Created place with id: ${place.place_id}`);
   }
   await prisma.user.create({
     data: {
+      user_id: 1000,
       name: "Admin",
       email: "admin@example.com",
       password: "admin",

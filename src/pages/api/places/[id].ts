@@ -8,7 +8,7 @@ export default async function handle(
 ) {
   const place = await prisma.place.findUnique({
     where: {
-      id: Number(req.query?.id),
+      id: String(req.query?.id),
     },
     include: {
       city: true,
