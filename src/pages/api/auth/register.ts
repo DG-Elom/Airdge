@@ -11,8 +11,11 @@ export default async function handle(
 ) {
   const { email, password, name } = req.body;
 
+  const users = await prisma.place.findMany();
+
   const user = await prisma.user.create({
     data: {
+      user_id: users.length + 1,
       email,
       password,
       name,
